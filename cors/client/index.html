@@ -13,7 +13,7 @@
           console.log("GET DATA:", getData);
 
           const postRes = await fetch(`${BASE_URL}/data`, {
-            method: "POST",
+            method: "POST"
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: "Test Item" }),
           });
