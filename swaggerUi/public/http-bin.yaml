@@ -1,0 +1,19 @@
+openapi: 3.0.0
+info:
+  title: CORS Demo API
+  version: 1.0.0
+servers:
+  - url: https://httpbin.org/headers
+    description: "Through Nginx proxy (CORS enabled)"
+
+paths:
+  "/":
+    get:
+      summary: Get Http Bin
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string

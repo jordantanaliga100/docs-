@@ -34,32 +34,20 @@ app.use(express.urlencoded({ extended: true }));
 // app.use(morgan("dev"));
 
 // ROUTES
-// app.get("/", (req: Request, res: Response) => {
-//   // throw new Error("Testing gin index");
-//   res.send(`
-//     <small>
-//     <h3>
-//     Node_Express Server Alive 🛩️
-//     </h3>
-//     <a href="/api-docs">API </a>
-//     </small>
-//     `);
-// });
-// ✅ SWAGGER DOCS
-// app.get("/api-docs", (req: Request, res: Response) => {
-//   res.send(`
-//     <a href="/"> Go back</a>
-//     <pre>
-//     API Docs here...
-//     </pre>
-//     `);
-// });
-
-app.get("/api/test", (req, res) => {
-  res.json({ message: "Hello World" });
+app.get("/", (req: Request, res: Response) => {
+  // throw new Error("Testing gin index");
+  res.send(`
+    <small>
+    <h3>
+    Node_Express Server Alive 🛩️
+    </h3>
+    <a href="/docs">API </a>
+    </small>
+    `);
 });
 
-app.get("/", (req: Request, res: Response) => {
+// ✅ SWAGGER DOCS
+app.get("/docs", (req: Request, res: Response) => {
   const swaggerUiPath = path.resolve(__dirname, "../public/swagger.html");
   res.sendFile(swaggerUiPath);
 });

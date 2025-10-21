@@ -1,0 +1,357 @@
+openapi: 3.0.0
+info:
+  title: JSONPlaceholder API
+  version: 1.0.0
+  description: A fake REST API for testing applications.
+servers:
+  - url: https://jsonplaceholder.typicode.com
+
+components:
+  schemas:
+    Post:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "sunt aut facere repellat provident occaecati excepturi optio reprehenderit"
+        body:
+          type: string
+          example: "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+
+    Comment:
+      type: object
+      properties:
+        postId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "id labore ex et quam laborum"
+        email:
+          type: string
+          example: "Eliseo@gardner.biz"
+        body:
+          type: string
+          example: "laudantium enim quasi est quidem magnam voluptate ipsam eos"
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: "Leanne Graham"
+        username:
+          type: string
+          example: "Bret"
+        email:
+          type: string
+          example: "Sincere@april.biz"
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+              example: "Kulas Light"
+            suite:
+              type: string
+              example: "Apt. 556"
+            city:
+              type: string
+              example: "Gwenborough"
+            zipcode:
+              type: string
+              example: "92998-3874"
+            geo:
+              type: object
+              properties:
+                lat:
+                  type: string
+                  example: "-37.3159"
+                lng:
+                  type: string
+                  example: "81.1496"
+        phone:
+          type: string
+          example: "1-770-736-8031 x56442"
+        website:
+          type: string
+          example: "hildegard.org"
+        company:
+          type: object
+          properties:
+            name:
+              type: string
+              example: "Romaguera-Crona"
+            catchPhrase:
+              type: string
+              example: "Multi-layered client-server neural-net"
+            bs:
+              type: string
+              example: "harness real-time e-markets"
+
+    Album:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "quidem molestiae enim"
+
+    Photo:
+      type: object
+      properties:
+        albumId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "accusamus beatae ad facilis cum similique qui sunt"
+        url:
+          type: string
+          format: uri
+          example: "https://via.placeholder.com/600/92c952"
+        thumbnailUrl:
+          type: string
+          format: uri
+          example: "https://via.placeholder.com/150/92c952"
+
+    Todo:
+      type: object
+      properties:
+        userId:
+          type: integer
+          example: 1
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "delectus aut autem"
+        completed:
+          type: boolean
+          example: false
+
+paths:
+  /posts:
+    get:
+      summary: Get all posts
+      tags:
+        - Posts
+      responses:
+        "200":
+          description: List of posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Post"
+
+  /posts/{id}:
+    get:
+      summary: Get a single post by ID
+      tags:
+        - Posts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single post object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Post"
+
+  /comments:
+    get:
+      summary: Get all comments
+      tags:
+        - Comments
+      responses:
+        "200":
+          description: List of comments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Comment"
+
+  /comments/{id}:
+    get:
+      summary: Get a single comment by ID
+      tags:
+        - Comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single comment object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
+
+  /users:
+    get:
+      summary: Get all users
+      tags:
+        - Users
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+
+  /users/{id}:
+    get:
+      summary: Get a single user by ID
+      tags:
+        - Users
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single user object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+  /albums:
+    get:
+      summary: Get all albums
+      tags:
+        - Albums
+      responses:
+        "200":
+          description: List of albums
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Album"
+
+  /albums/{id}:
+    get:
+      summary: Get a single album by ID
+      tags:
+        - Albums
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single album object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Album"
+
+  /photos:
+    get:
+      summary: Get all photos
+      tags:
+        - Photos
+      responses:
+        "200":
+          description: List of photos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Photo"
+
+  /photos/{id}:
+    get:
+      summary: Get a single photo by ID
+      tags:
+        - Photos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single photo object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Photo"
+
+  /todos:
+    get:
+      summary: Get all todos
+      tags:
+        - Todos
+      responses:
+        "200":
+          description: List of todos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Todo"
+
+  /todos/{id}:
+    get:
+      summary: Get a single todo by ID
+      tags:
+        - Todos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single todo object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"

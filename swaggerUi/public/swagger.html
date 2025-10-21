@@ -221,7 +221,12 @@
     <script>
       window.onload = () => {
         window.ui = SwaggerUIBundle({
-          url: "./no-cors.yaml", // your local YAML file
+          urls: [
+            { url: "./store.yaml", name: "Fake Store API" },
+            { url: "./fake.yaml", name: "JSON Placeholder API " },
+            { url: "./no-cors.yaml", name: "NO CORS API " },
+            { url: "http://localhost:8080/blocked", name: "HTTP-bin  API " },
+          ],
           dom_id: "#swagger-ui",
           presets: [SwaggerUIBundle.presets.apis, SwaggerUIStandalonePreset],
           layout: "StandaloneLayout",
