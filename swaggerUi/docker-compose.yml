@@ -1,0 +1,27 @@
+services:
+  nginx:
+    container_name: "swagger-nginx"
+    image: nginx:alpine
+    ports:
+      - "${HOST_PORT}:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/cors.conf:/etc/nginx/conf.d/cors.conf:ro
+    restart: always
+
+  app:
+    container_name: "swagger-core"
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    env_file:
+      - "./.env"
+    ports:
+      - "${APP_PORT}:${APP_PORT}"
+    # expose:
+    #   - "${APP_PORT}"
+    volumes:
+      - "./:/app"
+      - "/app/node_modules"
+    restart: "always"

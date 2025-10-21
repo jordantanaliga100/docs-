@@ -1,0 +1,184 @@
+openapi: 3.0.0
+info:
+  title: Fake Store API
+  version: 1.0.0
+  description: A fake REST API for testing e-commerce applications.
+servers:
+  - url: https://fakestoreapi.com
+
+paths:
+  /products:
+    get:
+      summary: Get all products
+      responses:
+        "200":
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Product"
+
+  /products/{id}:
+    get:
+      summary: Get a single product by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single product object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Product"
+
+  /carts:
+    get:
+      summary: Get all carts
+      responses:
+        "200":
+          description: List of carts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Cart"
+
+  /carts/{id}:
+    get:
+      summary: Get a single cart by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single cart object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Cart"
+
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        "200":
+          description: List of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+
+  /users/{id}:
+    get:
+      summary: Get a single user by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Single user object
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        price:
+          type: number
+          format: float
+        description:
+          type: string
+        category:
+          type: string
+        image:
+          type: string
+        rating:
+          type: object
+          properties:
+            rate:
+              type: number
+              format: float
+            count:
+              type: integer
+
+    Cart:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: integer
+              quantity:
+                type: integer
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        name:
+          type: object
+          properties:
+            firstname:
+              type: string
+            lastname:
+              type: string
+        address:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            number:
+              type: integer
+            zipcode:
+              type: string
+            geolocation:
+              type: object
+              properties:
+                lat:
+                  type: string
+                long:
+                  type: string
+        phone:
+          type: string

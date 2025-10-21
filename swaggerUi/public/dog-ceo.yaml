@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  title: Dog CEO API (CORS + Bearer Example)
+  version: 1.0.0
+  description: >
+    Sample test of Dog CEO API to demonstrate CORS behavior and Bearer token usage.
+servers:
+  - url: https://example.com
+  # - url: https://dog.ceo/api
+
+paths:
+  /breeds/list/all:
+    get:
+      summary: Get all dog breeds
+      security:
+        - bearerAuth: [] # Require Bearer Token (for demonstration only)
+      responses:
+        "200":
+          description: A list of all dog breeds
+          content:
+            application/json:
+              schema:
+                type: object

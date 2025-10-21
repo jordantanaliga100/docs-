@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: CORS Demo API
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/proxy/google
+    description: "Through Nginx proxy (CORS enabled)"
+  - url: http://localhost:5000
+    description: "Direct Node app (CORS disabled)"
+paths:
+  "/robots.txt":
+    get:
+      summary: Test Google robots.txt
+      responses:
+        "200":
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+  "/api/test":
+    get:
+      summary: Test Node API
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
