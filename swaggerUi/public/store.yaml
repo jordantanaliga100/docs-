@@ -6,6 +6,95 @@ info:
 servers:
   - url: https://fakestoreapi.com
 
+components:
+  schemas:
+    Product:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: "Fjallraven Backpack"
+        price:
+          type: number
+          format: float
+          example: 109.95
+        description:
+          type: string
+        category:
+          type: string
+        image:
+          type: string
+        rating:
+          type: object
+          properties:
+            rate:
+              type: number
+              format: float
+            count:
+              type: integer
+
+    Cart:
+      type: object
+      properties:
+        id:
+          type: integer
+        userId:
+          type: integer
+        date:
+          type: string
+          format: date
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productId:
+                type: integer
+              quantity:
+                type: integer
+
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+        name:
+          type: object
+          properties:
+            firstname:
+              type: string
+            lastname:
+              type: string
+        address:
+          type: object
+          properties:
+            city:
+              type: string
+            street:
+              type: string
+            number:
+              type: integer
+            zipcode:
+              type: string
+            geolocation:
+              type: object
+              properties:
+                lat:
+                  type: string
+                long:
+                  type: string
+        phone:
+          type: string
+
 paths:
   /products:
     get:
@@ -96,89 +185,3 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
-
-components:
-  schemas:
-    Product:
-      type: object
-      properties:
-        id:
-          type: integer
-        title:
-          type: string
-        price:
-          type: number
-          format: float
-        description:
-          type: string
-        category:
-          type: string
-        image:
-          type: string
-        rating:
-          type: object
-          properties:
-            rate:
-              type: number
-              format: float
-            count:
-              type: integer
-
-    Cart:
-      type: object
-      properties:
-        id:
-          type: integer
-        userId:
-          type: integer
-        date:
-          type: string
-          format: date
-        products:
-          type: array
-          items:
-            type: object
-            properties:
-              productId:
-                type: integer
-              quantity:
-                type: integer
-
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-        email:
-          type: string
-        username:
-          type: string
-        password:
-          type: string
-        name:
-          type: object
-          properties:
-            firstname:
-              type: string
-            lastname:
-              type: string
-        address:
-          type: object
-          properties:
-            city:
-              type: string
-            street:
-              type: string
-            number:
-              type: integer
-            zipcode:
-              type: string
-            geolocation:
-              type: object
-              properties:
-                lat:
-                  type: string
-                long:
-                  type: string
-        phone:
-          type: string

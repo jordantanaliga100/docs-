@@ -36,9 +36,9 @@ app.get("/", (req: Request, res: Response) => {
 });
 app.use("/api/v1/users", UserRoutes);
 
-// ✅ SWAGGER DOCS
-app.get("/api-docs", (req: Request, res: Response) => {
-  res.send("API Docs here...");
 });
 
 export default app;
+// ✅ SWAGGER DOCS
+app.get("/api-docs", (req: Request, res: Response) => {
+  res.send("API Docs here...");
